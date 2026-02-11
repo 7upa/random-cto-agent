@@ -15,7 +15,12 @@ async function main() {
   console.log('Fetching tokens from Jupiter...');
   const tokensResponse = await fetch('https://token.jup.ag/strict');
   const allTokens = await tokensResponse.json();
-  const filteredTokens = allTokens.filter(t => t.daily_volume > 10000 && t.symbol !== 'SOL'); // avoid SOL to SOL
+  const filteredTokens = allTokens.filter(t =>
+    t.daily_volume < 1000 && // Low activity: approx no tx in 24h (low volume = few tx)
+    t.symbol !== 'SOL' &&
+    !t.name?.toLowerCase().includes('bundle') && // No bundle in name
+    (t.tags?.some(tag => ['meme', 'ai', 'gaming', 'defi', 'nft'].includes(tag.toLowerCase())) || t.description?.toLowerCase().includes('bullish')) // Bullish narrative: trending tags or desc mentions bullish
+  );
 
   console.log(`Found ${filteredTokens.length} tradable tokens.`);
 
