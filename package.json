@@ -1,0 +1,15 @@
+{
+  "name": "random-cto-agent",
+  "version": "1.0.0",
+  "description": "Agent to randomly dump 50 SOL into tokens on Solana using verifiable randomness",
+  "main": "random-cto.js",
+  "scripts": {
+    "start": "node random-cto.js"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.87.6",
+    "@orao-network/solana-vrf": "^2.0.0",
+    "@jup-ag/api": "^6.0.0",
+    "node-fetch": "^3.3.2"
+  }
+}
