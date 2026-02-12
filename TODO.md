@@ -9,6 +9,7 @@ Build a "cool AI CTO character" that autonomously dumps 50 SOL into randomly sel
 - [x] Add filters: bullish narrative, no bundle, low activity
 - [x] Dry-run mode for testing
 - [x] Git repo setup with proper security (.env gitignored)
+- [x] Generate bullish thesis for selected token
 
 ## Phase 2: Devnet Testing
 - [ ] Fund devnet wallet with SOL via faucet
