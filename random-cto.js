@@ -28,10 +28,9 @@ async function main() {
     allTokens = await tokensResponse.json();
   }
   const filteredTokens = allTokens.filter(t =>
-    t.daily_volume < 1000 && // Low activity: approx no tx in 24h (low volume = few tx)
+    t.daily_volume < 1000 && // Low activity: approx no tx in 24h, proxy for low manipulation/bundling (few large holders)
     t.symbol !== 'SOL' &&
-    !t.name?.toLowerCase().includes('bundle') && // No bundle in name
-    (t.tags?.some(tag => ['meme', 'ai', 'gaming', 'defi', 'nft'].includes(tag.toLowerCase())) || t.description?.toLowerCase().includes('bullish')) // Bullish narrative: trending tags or desc mentions bullish
+    (t.tags?.some(tag => ['meme', 'ai', 'gaming', 'defi', 'nft', 'community'].includes(tag.toLowerCase())) || t.description?.toLowerCase().includes('bullish')) // Bullish narrative: trending/community tags or desc mentions bullish
   );
 
   console.log(`Found ${filteredTokens.length} tradable tokens.`);
