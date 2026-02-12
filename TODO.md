@@ -31,6 +31,7 @@ Build a "cool AI CTO character" that autonomously dumps 50 SOL into randomly sel
 
 ## Phase 5: Coin Analysis & Selection Enhancement
 - [x] Conduct extensive research on bullish indicators and CTO strategy (RESEARCH.md)
+- [x] Extensive research on Solana meme coins specifically (updated RESEARCH.md)
 - [ ] Add deeper token analysis: fetch market data (price, volume history)
 - [ ] Implement bubble map visualization (market cap vs volume charts)
 - [ ] Score tokens on "bullish potential" (social sentiment, dev activity)

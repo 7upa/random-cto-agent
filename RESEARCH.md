@@ -66,12 +66,57 @@ Tools: Python Plotly, D3.js, or Chart.js. Data sources: CoinGecko API, LunarCrus
 
 Example: Plot shows "value traps" (high cap, low volume = overvalued) vs "gems" (low cap, high social = bullish).
 
+## Solana Meme Coins Focus (2026)
+
+### Why Solana Memes?
+Solana's speed (65k TPS), low fees (~$0.0005), and meme-friendly ecosystem make it the go-to chain for memes. 2025 saw SOL outgrow meme phase toward institutional, but memes still dominate with Pump.fun enabling instant launches. Q1 2026 shows revival: Pump.fun DEX volume at ATH, graduating tokens surging, retail speculation high. Analysts predict utility-driven memes will win, but pure fun still pumps.
+
+### Top Solana Meme Coins (2026 Watchlist)
+1. **BONK**: Dog-themed, $1.5B+ MC, high whale accumulation. RSI 57.9 (bullish), MACD positive, $126M+ daily volume. Prediction: 187%+ in 2026.
+2. **WIF**: Dogwifhat, viral community, Solana native. Strong social buzz, institutional interest.
+3. **TRUMP**: Political meme, $0.012-0.025 target 2026. Ties to real-world events for hype.
+4. **FARTCOIN**: AI-generated, absurd branding (fart sounds). Launched Oct 2024 via Pump.fun, speculative potential.
+5. **Pudgy Penguins**: NFT-meme hybrid, community-driven. Price predictions bullish.
+
+### Bullish Indicators for Solana Memes
+- **Launchpad Success**: Pump.fun graduation = liquidity influx. Track "graduating tokens" surge.
+- **DEX Volume**: Solana meme DEX volume at ATH signals demand. Compare to Ethereum's slower memes.
+- **Whale Accumulation**: Top holders buying = institutional interest. Monitor via Solscan.
+- **Social Metrics**: High Twitter/X mentions, Reddit hype. Solana memes spread faster due to chain speed.
+- **Technicals**: RSI >50, MACD crossover, bull flag patterns. BONK example: RSI 57.9, positive MACD.
+- **Chain Advantages**: Faster confirms = quicker pumps/dumps. Low fees enable micro-trades.
+- **Community Strength**: Active Telegram/Discord, viral marketing. Memes with strong communities (like BONK) sustain.
+- **Macro Trends**: Altcoin rotation post-BTC halving (Feb 2026). Memes as high-beta plays.
+- **Volume Spikes**: 24h volume >$100M for small caps = momentum. Institutional inflows via ETFs.
+
+### Risks & Pitfalls
+- **Rug Pulls**: 90%+ fail. Check contract renounced, dev wallets locked.
+- **Speculation Over Utility**: Pure memes crash hard; look for community utility (e.g., memes with staking/games).
+- **Pump.fun Saturation**: Too many launches dilute attention. Filter for post-graduation.
+- **Regulatory Scrutiny**: Political memes (TRUMP) risk bans.
+- **Network Congestion**: Solana outages kill momentum.
+
+### CTO Strategy for Solana Memes
+- **Timing**: Post-launch graduation for liquidity. Avoid peak hype.
+- **Amount**: Small dumps (1-5 SOL) to test waters, larger for momentum.
+- **Hype Angle**: Viral, fun narratives. "This meme's got Solana speed – faster than light pumps!"
+- **Diversification**: CTO across multiple memes, but track correlations.
+- **Exit Strategy**: Set stop-losses; memes are volatile.
+
+### Data Sources for Analysis
+- CoinGecko: Top Solana memes by MC.
+- Pump.fun: Track launches/graduations.
+- Solscan: On-chain metrics (holders, volume).
+- LunarCrush: Social sentiment.
+- DexScreener: Liquidity/volume checks.
+
 ## Application to AI CTO Agent
-- **Thesis Enhancement**: Weave indicators into narratives (e.g., "RSI divergence signals hidden strength").
-- **Filter Refinement**: Add on-chain checks for supply distribution.
+- **Thesis Enhancement**: Weave indicators into narratives (e.g., "RSI divergence signals hidden strength", "Solana speed for viral pumps").
+- **Filter Refinement**: Prioritize 'meme' tags, post-Pump.fun graduation, low FDV.
+- **Bubble Map**: X = Market Cap, Y = Social Volume, Bubble = Whale Holdings, Color = Meme Potential.
 - **Post-CTO Analysis**: Track performance vs indicators for learning.
 
-Sources: CoinGlass, CoinDCX reports, Kraken Academy, CryptoHoppers, dYdX Learn, BingX Academy, CoinMarketCap.</content>
+Sources: BeInCrypto, CoinGecko, Motley Fool, Yahoo Finance, CryptoNews, aInvest, Analytics Insight, Reddit, KoinBX, 99Bitcoins, CoinGlass, CoinDCX reports, Kraken Academy, CryptoHoppers, dYdX Learn, BingX Academy, CoinMarketCap.</content>
 </xai:function_call"> 
 
 Assistant: Now, commit the research doc. 
