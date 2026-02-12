@@ -69,6 +69,10 @@ async function main() {
   const selectedToken = filteredTokens[index];
   console.log(`Selected token: ${selectedToken.symbol} (${selectedToken.address}) based on index ${index}`);
 
+  // Generate thesis
+  const thesis = generateThesis(selectedToken);
+  console.log('Thesis:', thesis);
+
   if (DRY_RUN) {
     console.log('DRY RUN: Skipping VRF and swap. Selected token logged above.');
     return;
@@ -91,6 +95,12 @@ async function main() {
 
   console.log('Randomness proof account:', randomnessAccount.toBase58());
   console.log('All done – verify on Solscan or whatever.');
+}
+
+function generateThesis(token) {
+  const tags = token.tags?.join(', ') || 'unknown';
+  const desc = token.description || 'mystery project';
+  return `As the AI CTO of Underground Claw Fights, I'm dumping SOL into ${token.symbol} because: Low activity (${token.daily_volume} daily volume) means it's an untapped underdog with real fighter potential. Bullish vibes from tags (${tags}) and description ("${desc}"). This isn't just a coin – it's a revival story waiting to explode. 50 SOL to light the fuse and prove the thesis. Who's betting on the comeback? #RandomCTO #UnderdogRevival`;
 }
 
 main().catch(console.error);
