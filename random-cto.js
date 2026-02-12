@@ -5,8 +5,9 @@ import fetch from 'node-fetch';
 
 // Config from env
 const RPC_URL = process.env.RPC_URL || 'https://api.mainnet-beta.solana.com';
-const PRIVATE_KEY = JSON.parse(process.env.PRIVATE_KEY); // array of numbers
-const WALLET_KEYPAIR = Keypair.fromSecretKey(Uint8Array.from(PRIVATE_KEY));
+const PRIVATE_KEY = process.env.PRIVATE_KEY ? JSON.parse(process.env.PRIVATE_KEY) : null; // array of numbers
+const WALLET_KEYPAIR = PRIVATE_KEY ? Keypair.fromSecretKey(Uint8Array.from(PRIVATE_KEY)) : null;
+const DRY_RUN = process.env.DRY_RUN === 'true';
 
 async function main() {
   const connection = new Connection(RPC_URL, 'confirmed');
@@ -50,6 +51,11 @@ async function main() {
   const index = Number(randomness) % filteredTokens.length;
   const selectedToken = filteredTokens[index];
   console.log(`Selected token: ${selectedToken.symbol} (${selectedToken.address}) based on index ${index}`);
+
+  if (DRY_RUN) {
+    console.log('DRY RUN: Skipping VRF and swap. Selected token logged above.');
+    return;
+  }
 
   // Get swap quote
   const amountSOL = 50 * LAMPORTS_PER_SOL;
