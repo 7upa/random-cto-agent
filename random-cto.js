@@ -75,7 +75,7 @@ async function main() {
   }
 
   // Get swap quote
-  const amountSOL = 50 * LAMPORTS_PER_SOL;
+  const amountSOL = parseFloat(process.env.AMOUNT_SOL || 50) * LAMPORTS_PER_SOL;
   const quoteResponse = await createQuote({
     inputMint: new PublicKey('So11111111111111111111111111111111111111112'), // WSOL mint
     outputMint: new PublicKey(selectedToken.address),
