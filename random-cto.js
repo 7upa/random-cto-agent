@@ -1,6 +1,7 @@
 import { Connection, Keypair, PublicKey, sendAndConfirmTransaction, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { Orao } from '@orao-network/solana-vrf';
-import { createQuote, createSwapInstructions } from '@jup-ag/api';
+import jupApi from '@jup-ag/api';
+const { createQuote, createSwapInstructions } = jupApi;
 import fetch from 'node-fetch';
 
 // Config from env
@@ -14,8 +15,18 @@ async function main() {
   const orao = new Orao(connection);
 
   console.log('Fetching tokens from Jupiter...');
-  const tokensResponse = await fetch('https://token.jup.ag/strict');
-  const allTokens = await tokensResponse.json();
+  let allTokens;
+  if (DRY_RUN) {
+    // Mock some tokens for testing
+    allTokens = [
+      { symbol: 'TEST1', address: '11111111111111111111111111111112', daily_volume: 500, tags: ['meme'], description: 'A bullish test token' },
+      { symbol: 'TEST2', address: '22222222222222222222222222222222', daily_volume: 200, tags: ['ai'], description: 'AI powered bullish' },
+      { symbol: 'TEST3', address: '33333333333333333333333333333333', daily_volume: 1500, tags: ['gaming'], description: 'No bundle here' }
+    ];
+  } else {
+    const tokensResponse = await fetch('https://token.jup.ag/strict');
+    allTokens = await tokensResponse.json();
+  }
   const filteredTokens = allTokens.filter(t =>
     t.daily_volume < 1000 && // Low activity: approx no tx in 24h (low volume = few tx)
     t.symbol !== 'SOL' &&
@@ -25,27 +36,33 @@ async function main() {
 
   console.log(`Found ${filteredTokens.length} tradable tokens.`);
 
-  // Request randomness
-  console.log('Requesting verifiable randomness from ORAO...');
-  const randomnessRequest = await orao.requestRandomness(WALLET_KEYPAIR.publicKey);
-  const randomnessTx = await sendAndConfirmTransaction(connection, randomnessRequest.tx, [WALLET_KEYPAIR]);
-  console.log('Randomness request tx:', randomnessTx);
-
-  // Wait for fulfillment (poll for simplicity)
-  const randomnessAccount = randomnessRequest.randomnessAccount;
   let randomness;
-  let attempts = 0;
-  while (!randomness && attempts < 60) { // wait up to 60s
-    try {
-      randomness = await orao.getRandomness(randomnessAccount);
-    } catch (e) {
-      await new Promise(r => setTimeout(r, 1000));
-      attempts++;
-    }
-  }
-  if (!randomness) throw new Error('Randomness not fulfilled');
+  let randomnessAccount;
+  if (DRY_RUN) {
+    randomness = Math.floor(Math.random() * 1000000); // fake random for dry run
+    console.log('DRY RUN: Using fake randomness:', randomness);
+  } else {
+    // Request randomness
+    console.log('Requesting verifiable randomness from ORAO...');
+    const orao = new Orao(connection);
+    const randomnessRequest = await orao.requestRandomness(WALLET_KEYPAIR.publicKey);
+    const randomnessTx = await sendAndConfirmTransaction(connection, randomnessRequest.tx, [WALLET_KEYPAIR]);
+    console.log('Randomness request tx:', randomnessTx);
 
-  console.log('Randomness value:', randomness.toString());
+    // Wait for fulfillment (poll for simplicity)
+    randomnessAccount = randomnessRequest.randomnessAccount;
+    let attempts = 0;
+    while (!randomness && attempts < 60) { // wait up to 60s
+      try {
+        randomness = await orao.getRandomness(randomnessAccount);
+      } catch (e) {
+        await new Promise(r => setTimeout(r, 1000));
+        attempts++;
+      }
+    }
+    if (!randomness) throw new Error('Randomness not fulfilled');
+    console.log('Randomness value:', randomness.toString());
+  }
 
   // Select token
   const index = Number(randomness) % filteredTokens.length;
